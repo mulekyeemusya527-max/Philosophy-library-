@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Thinking Library</title>
+<meta name="description" content="A curated library of philosophy books, essays, research notes and important news.">
+<style>
+:root{--bg:#faf7f1;--fg:#1f1d1a;--mut:#6b655b;--line:#ddd5c6;--acc:#7a2e1d;--card:#fffdf8}
+:root[data-theme=dark]{--bg:#17150f;--fg:#ece6d8;--mut:#a39b8a;--line:#3a3529;--acc:#e0a98f;--card:#1f1c15}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:1.0625rem/1.65 Georgia,"Times New Roman",serif}
+a{color:var(--acc)}a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid var(--acc);outline-offset:2px}
+.skip{position:absolute;left:-999px}.skip:focus{left:8px;top:8px;background:var(--card);padding:.5rem;z-index:9}
+.top{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:.5rem;padding:.8rem 1rem;border-bottom:1px solid var(--line);max-width:64rem;margin:auto}
+.brand{font-size:1.3rem;font-weight:bold;text-decoration:none;color:var(--fg)}
+nav{display:none;width:100%;flex-direction:column;gap:.4rem}nav.open{display:flex}
+nav a{text-decoration:none;color:var(--fg);padding:.3rem 0}nav a[aria-current=page]{color:var(--acc);border-bottom:2px solid var(--acc)}
+button{font:inherit;background:none;border:1px solid var(--line);color:var(--fg);padding:.35rem .8rem;border-radius:3px;cursor:pointer}
+@media(min-width:48rem){nav{display:flex;flex-direction:row;width:auto;align-items:center;gap:1.1rem}#menuBtn{display:none}}
+main{max-width:46rem;margin:auto;padding:1.5rem 1rem 3rem}main.wide{max-width:64rem}
+h1{font-size:clamp(1.8rem,5vw,2.6rem);line-height:1.2;margin:.2em 0}h2{margin-top:2.2rem;border-top:1px solid var(--line);padding-top:1rem}
+.lede{font-size:1.2rem;color:var(--mut)}.tag,.badge{font:.8rem system-ui,sans-serif;text-transform:uppercase;letter-spacing:.06em;color:var(--mut)}
+.badge{border:1px solid var(--line);padding:.1rem .4rem;border-radius:3px}
+.grid{display:grid;gap:1rem}@media(min-width:40rem){.grid{grid-template-columns:repeat(2,1fr)}}@media(min-width:60rem){.grid.three{grid-template-columns:repeat(3,1fr)}}
+.item{border:1px solid var(--line);background:var(--card);padding:1rem;border-radius:3px}.item h3{margin:.2em 0;font-size:1.15rem}.item p{margin:.3em 0}
+form.search,.filters{display:flex;flex-wrap:wrap;gap:.5rem;margin:1rem 0}
+input,select,textarea{font:inherit;padding:.5rem;border:1px solid var(--line);background:var(--card);color:var(--fg);border-radius:3px}input[type=search]{flex:1;min-width:12rem}
+label{display:block;margin:.8rem 0 .2rem}textarea,form.contact input{width:100%}
+.empty{color:var(--mut);padding:1rem;border:1px dashed var(--line)}
+dl.meta{display:grid;grid-template-columns:max-content 1fr;gap:.2rem 1rem}dt{color:var(--mut)}dd{margin:0}
+.q{font-size:1.5rem;font-style:italic;margin:.5rem 0}
+.foot{border-top:1px solid var(--line);text-align:center;color:var(--mut);padding:1.5rem 1rem;font-size:.9rem}
+.sample{background:var(--card);border-left:4px solid var(--acc);padding:.5rem .8rem;font:.9rem system-ui,sans-serif}
+.btn{display:inline-block;padding:.45rem 1rem;border:1px solid var(--acc);border-radius:3px;background:var(--acc);color:var(--bg);text-decoration:none;font:.95rem system-ui,sans-serif}.btn:focus-visible{outline:3px solid var(--fg)}
+.chips{margin:.4rem 0}.chips a{display:inline-block;margin:.2rem .3rem .2rem 0;padding:.1rem .6rem;border:1px solid var(--line);border-radius:999px;text-decoration:none;font:.85rem system-ui,sans-serif}
+.note{border-left:4px solid var(--line);padding:.4rem .8rem;color:var(--mut);font:.9rem system-ui,sans-serif}
+form.ed input,form.ed select,form.ed textarea,#eo{width:100%}#eo{font-family:monospace;font-size:.85rem}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="top">
+  <a class="brand" href="#/" id="brand"></a>
+  <button id="menuBtn" aria-expanded="false" aria-controls="nav">Menu</button>
+  <nav id="nav" aria-label="Main">
+    <a href="#/library">Library</a><a href="#/essays">Essays</a><a href="#/news">News</a><a href="#/discuss">Discuss</a><a href="#/about">About</a><a href="#/contact">Contact</a>
+    <button id="themeBtn" aria-label="Toggle dark theme">Theme</button>
+  </nav>
+</header>
+<main id="main" tabindex="-1"></main>
+<footer class="foot"><p id="foot"></p><p><a href="#/add">Editor tools</a></p></footer>
+<noscript><p style="padding:1rem">This page needs JavaScript turned on in your browser.</p></noscript>
+<script id="content">
+/* ============ YOUR CONTENT LIVES HERE (edit only this block) ============
+   Add each new entry between the [ and ] of the right list, ending with a comma.
+   Easiest way: open the site, tap "Editor tools" in the footer, fill in the form,
+   copy the entry it makes, and paste it inside the matching [ ].
+   Dates use the form 2026-03-21. Links must start with https://
+*/
+window.SITE = {
+  name: "The Thinking Library",
+  tagline: "Read. Understand. Question.",
+  contactEmail: ""   // e.g. "you@example.com". Leave empty until you want it shown.
+};
+window.LIB = {
+  questions: [
+    "What makes a life meaningful?",
+    "Can morality exist without religion?",
+    "Is freedom possible without responsibility?",
+    "What makes a government legitimate?",
+    "Can knowledge ever be completely certain?",
+    "What do we owe people we have never met?"
+  ],
+  books: [
+    {
+      "title": "Meditations",
+      "author": "Marcus Aurelius",
+      "year": "2nd century CE",
+      "description": "Personal notes written in Greek by the Roman emperor Marcus Aurelius, reflecting Stoic ideas about duty, impermanence and self-discipline. This edition is George Long's English translation.",
+      "topics": ["Stoicism", "Ethics", "Ancient philosophy"],
+      "link": "https://classics.mit.edu/Antoninus/meditations.html",
+      "access": "Free to read in your browser at the Internet Classics Archive (MIT). George Long's 19th-century translation, public domain in the United States."
+    },
+    {
+      "title": "The Republic",
+      "author": "Plato",
+      "year": "4th century BCE",
+      "description": "A dialogue led by Socrates that asks what justice is, how an ideal city might be organised, and how the structure of a city relates to the structure of the soul. This edition is Benjamin Jowett's English translation.",
+      "topics": ["Political philosophy", "Justice", "Ancient philosophy"],
+      "link": "https://classics.mit.edu/Plato/republic.html",
+      "access": "Free to read in your browser at the Internet Classics Archive (MIT). Benjamin Jowett's 19th-century translation, public domain in the United States."
+    },
+    {
+      "title": "Nicomachean Ethics",
+      "author": "Aristotle",
+      "year": "4th century BCE",
+      "description": "Aristotle's inquiry into what the best human life is, treating happiness as an activity of the soul in accordance with virtue and examining the virtues of character and thought. This edition is W. D. Ross's English translation.",
+      "topics": ["Ethics", "Virtue", "Ancient philosophy"],
+      "link": "https://classics.mit.edu/Aristotle/nicomachaen.html",
+      "access": "Free to read in your browser at the Internet Classics Archive (MIT). W. D. Ross's translation, first published in 1925 and public domain in the United States."
+    },
+    {
+      "title": "On the Shortness of Life",
+      "author": "Seneca",
+      "year": "c. 49 CE (date uncertain)",
+      "description": "An essay addressed to a friend, Paulinus, arguing that life is long enough if used well and that people waste time on trivial pursuits. It is one of Seneca's moral essays, known as the Dialogues.",
+      "topics": ["Stoicism", "Ethics", "Time"],
+      "link": "https://standardebooks.org/ebooks/seneca/dialogues/aubrey-stewart",
+      "access": "Free to read in your browser at Standard Ebooks, inside Seneca's Dialogues in Aubrey Stewart's 1889 translation. Believed public domain in the United States; readers elsewhere should check local law."
+    },
+  ],
+  articles: [
+    // paste essays, articles and research notes here
+  ],
+  news: [
+    // paste news stories here
+  ]
+};
+
+</script>
+<script>
+(function(){
+const $=s=>document.querySelector(s), main=$('#main');
+const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const arr=x=>Array.isArray(x)?x:[];
+const url=u=>/^https?:\/\/[^\s"'<>]+$/i.test(u||'')?u:'';
+const ext=(u,t)=>url(u)?`<a href="${esc(u)}" target="_blank" rel="noopener noreferrer">${esc(t||u)}</a>`:esc(t||'');
+const slug=s=>String(s).toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')||'item';
+const fmt=d=>{const m=/^(\d{4})-(\d{2})-(\d{2})$/.exec(d||'');return m?new Date(Date.UTC(+m[1],+m[2]-1,+m[3])).toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric',timeZone:'UTC'}):(d?String(d):'');};
+const byDate=(a,b)=>String(b.date||'').localeCompare(String(a.date||''));
+const L=window.LIB||{};
+function prep(list,key){const seen={};return arr(list).filter(x=>x&&x[key]).map(x=>{let s=slug(x[key]);seen[s]=(seen[s]||0)+1;if(seen[s]>1)s+='-'+seen[s];return Object.assign({},x,{_id:s,_topics:arr(x.topics).map(String)});});}
+const BOOKS=prep(L.books,'title'), ARTS=prep(L.articles,'title').sort(byDate), NEWS=prep(L.news,'headline').sort(byDate);
+const QUESTIONS=arr(L.questions);
+const TOPICS=[...new Set([].concat(BOOKS,ARTS,NEWS).flatMap(x=>x._topics))].sort();
+const hay=x=>[x.title,x.headline,x.author,x.subtitle,x.description,x.summary,x.body,x.kind,x._topics.join(' ')].join(' ').toLowerCase();
+const LBL=[['established','Established facts','Supported by the evidence cited.'],['interpretations','Interpretations','Explanations and readings that reasonable people can contest.'],['disputed','Disputed claims','Claims on which sources or experts disagree.'],['unanswered','Open questions','What is not yet known.']];
+const stmts=x=>LBL.filter(l=>arr(x[l[0]]).length).map(l=>`<h2>${l[1]}</h2><p class="tag">${l[2]}</p><ul>${arr(x[l[0]]).map(s=>`<li>${esc(s)}</li>`).join('')}</ul>`).join('');
+const paras=t=>String(t||'').split(/\n\s*\n/).filter(s=>s.trim()).map(p=>`<p>${esc(p.trim()).replace(/\n/g,'<br>')}</p>`).join('');
+const chips=t=>t.length?`<p class="chips">${t.map(x=>`<a href="#/topic/${encodeURIComponent(x)}">${esc(x)}</a>`).join('')}</p>`:'';
+const grid=(items,card,empty)=>items.length?`<div class="grid">${items.map(card).join('')}</div>`:`<p class="empty">${empty}</p>`;
+const readBtn=b=>url(b.link)?`<p><a class="btn" href="${esc(b.link)}" target="_blank" rel="noopener noreferrer">Read Online</a></p>`:'';
+const bCard=b=>`<article class="item"><h3><a href="#/book/${b._id}">${esc(b.title)}</a></h3><p>${esc(b.author)}${b.year?' · '+esc(b.year):''}</p><p>${esc(b.description)}</p>${readBtn(b)}${chips(b._topics)}</article>`;
+const aCard=a=>`<article class="item"><span class="tag">${esc(a.kind||'Article')}${a.date?' · '+esc(fmt(a.date)):''}</span><h3><a href="#/article/${a._id}">${esc(a.title)}</a></h3>${a.subtitle?`<p>${esc(a.subtitle)}</p>`:''}<p class="tag">${esc(a.author)}</p></article>`;
+const nCard=n=>`<article class="item"><span class="tag">${esc(fmt(n.date))}${n.place?' · '+esc(n.place):''}</span><h3><a href="#/news/${n._id}">${esc(n.headline)}</a></h3><p>${esc(n.summary)}</p>${n.sourceName?`<p class="tag">Source: ${esc(n.sourceName)}</p>`:''}</article>`;
+const sform=v=>`<form class="search" role="search" id="hs"><label class="tag" for="hq" style="margin:0;width:100%">Search books, essays, news and topics</label><input id="hq" type="search" value="${esc(v)}"><button>Search</button></form>`;
+const wire=()=>{$('#hs').onsubmit=e=>{e.preventDefault();location.hash='#/search?q='+encodeURIComponent($('#hq').value);};};
+
+function browse(o){
+ const kinds=o.kinds?[...new Set(o.items.map(x=>x.kind).filter(Boolean))].sort():[];
+ const tps=[...new Set(o.items.flatMap(x=>x._topics))].sort();
+ const opt=a=>a.map(t=>`<option>${esc(t)}</option>`).join('');
+ return {title:o.title,wide:1,
+ html:`<h1>${o.title}</h1><p class="lede">${o.lede}</p>${o.note||''}`+(o.items.length?`<form class="filters" role="search" id="bf"><input id="bq" type="search" aria-label="Search ${o.title}" placeholder="Search"><select id="bt" aria-label="Topic"><option value="">All topics</option>${opt(tps)}</select>${kinds.length?`<select id="bk" aria-label="Type"><option value="">All types</option>${opt(kinds)}</select>`:''}</form><p id="count" aria-live="polite"></p>`:'')+`<div id="res"></div>`,
+ after(){
+  if(!o.items.length){$('#res').innerHTML=`<p class="empty">${o.empty}</p>`;return;}
+  const run=()=>{const t=$('#bq').value.toLowerCase().trim(),tp=$('#bt').value,k=$('#bk')?$('#bk').value:'';
+   const r=o.items.filter(x=>(!tp||x._topics.includes(tp))&&(!k||x.kind===k)&&(!t||hay(x).includes(t)));
+   $('#count').textContent=r.length+(r.length===1?' result':' results');
+   $('#res').innerHTML=grid(r,o.card,'Nothing matches your search. Try fewer words or another topic.');};
+  $('#bf').onsubmit=e=>e.preventDefault();
+  ['#bq','#bt','#bk'].forEach(s=>{const e=$(s);if(e){e.oninput=run;e.onchange=run;}});run();}};
+}
+const back=(h,t)=>`<p><a href="${h}">&larr; ${t}</a></p>`;
+const SPEC={
+ book:[['title','Title'],['author','Author'],['year','Publication year'],['description','Short neutral description, in your own words','t'],['topics','Topics, separated by commas','l'],['link','Link to an authorised source or public-domain text (https://...)'],['access','Access note, e.g. Public domain, or Publisher page']],
+ article:[['title','Title'],['subtitle','Subtitle (optional)'],['author','Author'],['date','Publication date, like 2026-03-21'],['updated','Date last updated (optional)'],['kind','Type, e.g. Essay, Research note, Commentary'],['topics','Topics, separated by commas','l'],['body','Text. Leave a blank line between paragraphs.','t'],['established','Established facts, one per line','n'],['interpretations','Interpretations, one per line','n'],['disputed','Disputed claims, one per line','n'],['unanswered','Open questions, one per line','n'],['references','References, one per line, written as: Description | https://link','r']],
+ news:[['headline','Factual headline'],['date','Date of the event, like 2026-03-21'],['place','Where it happened'],['summary','What happened, in your own words','t'],['topics','Topics, separated by commas','l'],['sourceName','Original source name'],['sourceUrl','Link to the original report or document'],['sourceDate','Date the original was published'],['established','Established facts, one per line','n'],['disputed','Disputed claims, one per line','n'],['unanswered','Open questions, one per line','n'],['whySelected','Why this story was selected (optional)','t']]
+};
+const views={
+home(){return {title:'Home',html:`<h1>${esc(SITE.tagline)}</h1><p class="lede">${esc(SITE.name)} is a curated library of philosophy books, essays, research notes and a small selection of important news. It sets out evidence and competing arguments, and does not tell you what to think.</p>${sform('')}
+ <h2>Books</h2>${grid(BOOKS.slice(0,4),bCard,'No books added yet.')}${BOOKS.length?'<p><a href="#/library">Browse the library</a></p>':''}
+ <h2>Essays and research</h2>${grid(ARTS.slice(0,3),aCard,'No articles published yet.')}
+ <h2>News</h2>${grid(NEWS.slice(0,3),nCard,'No news published yet.')}
+ ${QUESTIONS.length?`<h2>Question of the week</h2><p class="q">${esc(QUESTIONS[Math.floor(Date.now()/6048e5)%QUESTIONS.length])}</p><a href="#/discuss">About the discussion</a>`:''}
+ <h2>Topics</h2>${TOPICS.length?chips(TOPICS):'<p class="empty">Topics appear here once content is added.</p>'}`,after:wire};},
+library(q){return browse({title:'Library',lede:'Philosophy books with links to lawful sources. The library does not host copyrighted books; it points to public-domain texts, open editions and authorised sellers or publishers.',items:BOOKS,card:bCard,empty:'No books added yet.'});},
+essays(){return browse({title:'Essays and research',lede:'Original essays, research notes and commentary, each with its references. Opinion and analysis live here, separate from the news.',items:ARTS,card:aCard,kinds:1,empty:'No articles published yet.'});},
+news(q,id){
+ if(id){const n=NEWS.find(x=>x._id===id);if(!n)return views.notfound();
+  const r=(k,v)=>v?`<dt>${k}</dt><dd>${v}</dd>`:'';
+  return {title:n.headline,html:`${back('#/news','News')}<h1>${esc(n.headline)}</h1>${chips(n._topics)}<dl class="meta">${r('When',esc(fmt(n.date)))}${r('Where',esc(n.place))}${r('Original source',n.sourceName||n.sourceUrl?ext(n.sourceUrl,n.sourceName)+(n.sourceDate?' ('+esc(fmt(n.sourceDate))+')':''):'')}</dl>${n.summary?`<h2>What happened</h2>${paras(n.summary)}`:''}${stmts(n)}${n.whySelected?`<h2>Why this story was selected</h2>${paras(n.whySelected)}`:''}<p class="note">This is a summary in our own words. Read the original reporting at the source above. Commentary on events belongs in <a href="#/essays">Essays</a>.</p>`};}
+ return browse({title:'News',lede:'A short, curated selection of developments with meaningful consequences, chosen for scale, novelty and reliability of evidence rather than popularity. Each item is a report of events with a link to the original source.',note:'<p class="note">News reports events. Opinion and philosophical commentary appear in <a href="#/essays">Essays</a>.</p>',items:NEWS,card:nCard,empty:'No news published yet.'});},
+book(q,id){const b=BOOKS.find(x=>x._id===id);if(!b)return views.notfound();
+ const r=(k,v)=>v?`<dt>${k}</dt><dd>${v}</dd>`:'';
+ return {title:b.title,html:`${back('#/library','Library')}<h1>${esc(b.title)}</h1><p class="lede">${esc(b.author)}</p>${paras(b.description)}<dl class="meta">${r('Published',esc(b.year))}${r('Access',esc(b.access))}</dl>${readBtn(b)}${chips(b._topics)}<p class="note">The library links to authorised sources and does not host copyrighted books.</p>`};},
+article(q,id){const a=ARTS.find(x=>x._id===id);if(!a)return views.notfound();
+ const w=String(a.body||'').split(/\s+/).filter(Boolean).length,refs=arr(a.references);
+ return {title:a.title,html:`${back('#/essays','Essays and research')}<span class="tag">${esc(a.kind||'Article')}</span><h1>${esc(a.title)}</h1>${a.subtitle?`<p class="lede">${esc(a.subtitle)}</p>`:''}<p class="tag">${[a.author,a.date?'Published '+fmt(a.date):'',a.updated?'Updated '+fmt(a.updated):'',w?Math.max(1,Math.round(w/200))+' min read':''].filter(Boolean).map(esc).join(' · ')}</p>${chips(a._topics)}${paras(a.body)}${stmts(a)}${refs.length?`<h2>References</h2><ul>${refs.map(x=>`<li>${ext(x.url,x.text)}</li>`).join('')}</ul>`:''}`};},
+topic(q,id){return {title:id,html:`${back('#/','Home')}<h1>${esc(id)}</h1>${[['Books',BOOKS,bCard],['Essays and research',ARTS,aCard],['News',NEWS,nCard]].map(s=>{const l=s[1].filter(x=>x._topics.includes(id));return l.length?`<h2>${s[0]}</h2>${grid(l,s[2])}`:'';}).join('')||'<p class="empty">Nothing has been filed under this topic.</p>'}`};},
+search(q){const t=(q.get('q')||'').toLowerCase().trim(),f=l=>t?l.filter(x=>hay(x).includes(t)):[];const B=f(BOOKS),A=f(ARTS),N=f(NEWS);
+ return {title:'Search',html:`<h1>Search</h1>${sform(q.get('q')||'')}${t?`<p aria-live="polite">${B.length+A.length+N.length} results for &ldquo;${esc(t)}&rdquo;</p><h2>Books</h2>${grid(B,bCard,'No matching books.')}<h2>Essays and research</h2>${grid(A,aCard,'No matching articles.')}<h2>News</h2>${grid(N,nCard,'No matching news.')}`:'<p class="empty">Type a word to search.</p>'}`,after:wire};},
+discuss(){return {title:'Discuss',html:`<h1>Discuss</h1><p class="lede">Questions worth arguing about, with reasons, examples and evidence.</p><p class="note">Discussion threads, replies and moderation are not available yet. They need accounts and a database, which this version does not have.</p>${QUESTIONS.length?`<h2>Questions to think about</h2><ul>${QUESTIONS.map(x=>`<li>${esc(x)}</li>`).join('')}</ul>`:''}<h2>Guidelines for future discussion</h2><ul><li>Disagree with ideas, not people.</li><li>Give reasons, examples or evidence.</li><li>No harassment, threats, spam or targeted abuse.</li><li>You need not agree with the library, an author or the majority.</li></ul>`};},
+about(){return {title:'About',html:`<h1>About and editorial policy</h1><p>${esc(SITE.name)} exists to make knowledge accessible and to encourage independent thought. It informs readers and does not tell them what to believe.</p>
+ <h2>How content is labelled</h2><ul><li><b>Established facts:</b> supported by the evidence cited.</li><li><b>Interpretations:</b> explanations that reasonable people can contest.</li><li><b>Disputed claims:</b> claims on which sources or experts disagree.</li><li><b>Open questions:</b> what is not yet known.</li></ul><p>News reports events. Essays, research notes and commentary are kept in a separate section.</p>
+ <h2>Principles</h2><ul><li>Competing arguments are presented fairly, without false balance where evidence is strong.</li><li>Headlines are factual, not sensational.</li><li>Uncertainty and corrections are stated openly.</li><li>Sources are named and linked; unverifiable claims are excluded or labelled.</li></ul>
+ <h2>Copyright</h2><p>The library links to public-domain texts, open editions and authorised sources. It does not reproduce copyrighted books or other publishers' articles without permission. News items are original summaries that link to the source.</p>`};},
+contact(){const e=/^[^\s@<>"']+@[^\s@<>"']+$/.test(SITE.contactEmail||'')?SITE.contactEmail:'';
+ return {title:'Contact',html:`<h1>Contact and corrections</h1>${e?`<p>To report a factual error, broken link, copyright concern or inappropriate content, email <a href="mailto:${esc(e)}">${esc(e)}</a>.</p>`:'<p class="empty">Contact details have not been added yet.</p>'}`};},
+add(){return {title:'Editor tools',html:`<h1>Editor tools</h1><p class="lede">Fill in the form and tap Make entry, then paste the result into the content block of index.html. Nothing here is saved or published automatically.</p><form class="ed" id="ef"><label for="et">What are you adding?</label><select id="et"><option value="book">Book</option><option value="article">Article, essay or research note</option><option value="news">News story</option></select><div id="ff"></div><p><button type="submit">Make entry</button></p></form><label for="eo">Your entry</label><textarea id="eo" rows="10" readonly></textarea><p><button type="button" id="ec">Copy</button> <span id="es" role="status"></span></p>`,
+ after(){const draw=()=>{$('#ff').innerHTML=SPEC[$('#et').value].map(f=>`<label for="f_${f[0]}">${esc(f[1])}</label>${f[2]&&f[2]!=='l'?`<textarea id="f_${f[0]}" rows="${f[2]==='t'?6:3}"></textarea>`:`<input id="f_${f[0]}">`}`).join('');};
+  draw();$('#et').onchange=draw;
+  $('#ef').onsubmit=e=>{e.preventDefault();const o={};SPEC[$('#et').value].forEach(f=>{const v=$('#f_'+f[0]).value.trim();if(!v)return;const ls=v.split('\n').map(s=>s.trim()).filter(Boolean);
+   o[f[0]]=f[2]==='l'?v.split(',').map(s=>s.trim()).filter(Boolean):f[2]==='n'?ls:f[2]==='r'?ls.map(s=>{const p=s.split('|');return {text:p[0].trim(),url:(p[1]||'').trim()};}):v;});
+   $('#eo').value=JSON.stringify(o,null,1)+',';$('#es').textContent='Entry made. Tap Copy.';};
+  $('#ec').onclick=()=>{const t=$('#eo');if(!t.value){$('#es').textContent='Make an entry first.';return;}t.select();let ok=false;try{ok=document.execCommand('copy');}catch(e){}$('#es').textContent=ok?'Copied.':'Press and hold the text, then choose Copy.';};}};},
+notfound(){return {title:'Not found',html:'<h1>Page not found</h1><p><a href="#/">Return home</a></p>'};}
+};
+function parse(){const h=location.hash.slice(1)||'/';const [path,qs]=h.split('?');const p=path.split('/');let id='';try{id=decodeURIComponent(p.slice(2).join('/'));}catch(e){}return{page:p[1]||'',id,q:new URLSearchParams(qs||'')};}
+function render(){
+ const {page,id,q}=parse();const route=page==='essays'||page==='article'?(page==='article'?'article':'essays'):(page||'home');
+ const v=(views[route]||views.notfound)(q,id);
+ document.title=v.title==='Home'?SITE.name:v.title+' · '+SITE.name;
+ main.className=v.wide?'wide':'';main.innerHTML=v.html;if(v.after)v.after();
+ document.querySelectorAll('nav a').forEach(a=>{const h=a.getAttribute('href');(h==='#/'+page||(h==='#/library'&&page==='book')||(h==='#/essays'&&page==='article'))?a.setAttribute('aria-current','page'):a.removeAttribute('aria-current');});
+ $('#nav').classList.remove('open');$('#menuBtn').setAttribute('aria-expanded','false');window.scrollTo(0,0);main.focus({preventScroll:true});
+}
+$('#brand').textContent=SITE.name;$('#foot').textContent=SITE.name+' · '+SITE.tagline;
+$('#menuBtn').onclick=()=>{const o=$('#nav').classList.toggle('open');$('#menuBtn').setAttribute('aria-expanded',o);};
+function setTheme(t){document.documentElement.dataset.theme=t;try{localStorage.setItem('theme',t);}catch(e){}}
+let saved=null;try{saved=localStorage.getItem('theme');}catch(e){}
+setTheme(saved||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'));
+$('#themeBtn').onclick=()=>setTheme(document.documentElement.dataset.theme==='dark'?'light':'dark');
+addEventListener('hashchange',render);render();
+})();
+
+</script>
+</body>
+</html>
